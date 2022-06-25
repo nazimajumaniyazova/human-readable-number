@@ -54,30 +54,30 @@ module.exports = function toReadable(number) {
 
     function Num(arr) {
         let num = +arr.join('');
-        let lastTwoNumbers = obj[num % 100 - num % 10] + " " + obj[num % 10]
+        let lastTwoNumbers = ''
+        if (obj.hasOwnProperty(num % 100)) {
+            lastTwoNumbers = obj[num % 100]
+        } else {
+            lastTwoNumbers = obj[num % 100 - num % 10] + " " + obj[num % 10]
+        }
+        //console.log(lastTwoNumbers)
         if (arr.length === 2) {
-
+            //console.log(lastTwoNumbers)
             return lastTwoNumbers;
         }
         if (arr.length === 3) {
+
+            //console.log(obj[Math.trunc(num / 100)] + ' hundred ' + lastTwoNumbers);
             return obj[Math.trunc(num / 100)] + ' hundred ' + lastTwoNumbers;
         }
     }
     if (word.length === 1) {
-        return word.join('')
+
+        let res = word.join('').trim()
+            // console.log(res)
+        return res
     }
     word = word.reverse()
-    return word[0] + ' thousand ' + word[1]
-
-    // word = word.reverse()
-    // console.log(word)
-    // let ans = '';
-    // let pow = word.length + 1;
-    // for (let i = 0; i < word.length; i++) {
-    //     ans = ans + ' ' + word[i] + `${Math.pow(10,pow)}`
-    //     pow = pow - i
-    //     console.log(ans)
-    // }
-    //console.log(number % 100 - number % 10)
-    // console.log(number % 100 - number % 10)
+    let res2 = word[0] + ' thousand ' + word[1]
+    return res2.trim()
 }
